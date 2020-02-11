@@ -1,9 +1,10 @@
-from .views import ClienteListView, CleinteDetailView
-
 from django.urls import path
 
+from views import ClienteListView,ClienteDetailView
+
 urlpatterns = [
-    path('',ClienteListView.as_view())
-    path('<pk>',ClienteDetailView.as_view()),
+    path('',ClienteListView.as_view()),
+    path('<pk>',ClienteDetailView)
+    
 
 ]

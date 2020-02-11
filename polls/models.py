@@ -12,6 +12,7 @@ class Prod_Lista(models.Model):
     kind = models.ForeignKey("ProductoId",on_delete=models.CASCADE)
     name = models.CharField( max_length=20)
     price = models.IntegerField()
+    discount = models.IntegerField(default=0)
     def __str__(self):
         return self.name
 
@@ -29,7 +30,7 @@ class Cliente(models.Model):
     last_name = models.CharField(max_length=50)
     cedula = models.IntegerField()
     telephone = models.BigIntegerField()
-    # birthday = models.DateField( auto_now=False, auto_now_add=False)
+    birthday = models.DateField(default='1999-05-10')
 
 
     def __str__(self):
@@ -59,10 +60,10 @@ class Delivery (models.Model):
     client = models.ForeignKey("Cliente",on_delete=models.CASCADE)
     direction = models.CharField( max_length=50)
     employee = models.ForeignKey("NominaDetallada",on_delete=models.CASCADE)
-    # time = models.TimeField(auto_now=False, auto_now_add=False)
+    # time = models.TimeField(default='')
     
-    def __str__(self):
-        return self.name
+    # def __str__(self):
+    #     return self.name
 
 # Factura
 
@@ -71,11 +72,12 @@ class Factura (models.Model):
     employee = models.ForeignKey("NominaDetallada", on_delete=models.CASCADE)
     descuento = models.BooleanField(default=False)
     price = models.IntegerField()
-    # day = models.DateField( auto_now=False, auto_now_add=False)
-    # time = models.TimeField( auto_now=False, auto_now_add=False)
+    serialDescuento = models.ForeignKey("Descuento", on_delete=models.CASCADE, default='')
+    day = models.DateField( default='1965-05-02' )
+    # time = models.TimeField( default='' )
 
-    def __str__(self):
-        return self.name
+    # def __str__(self):
+    #     return self.name
 
 class FacturaDetallada (models.Model):
     serial = models.ForeignKey("Factura", on_delete=models.CASCADE)
@@ -84,8 +86,8 @@ class FacturaDetallada (models.Model):
     
 
     
-    def __str__(self):
-        return self.name
+    # def __str__(self):
+    #     return self.name
 
 class Descuento (models.Model):
     tipoDescuento = models.CharField(max_length=20)

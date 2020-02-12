@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Cliente, Employee ,Department
+#from .models import Cliente, Employee ,Department
 
 class ClienteAdmin(admin.ModelAdmin):
     list_display=('name', 'identification')
@@ -14,9 +14,9 @@ class DepartmentAdmin(admin.ModelAdmin):
 #     list_display=('employee_id','name','department_name','hours','salary','active')
 
     
-admin.site.register(Cliente,ClienteAdmin)
-admin.site.register(Employee,EmployeeAdmin)
-admin.site.register(Department,DepartmentAdmin)
+#admin.site.register(Cliente,ClienteAdmin)
+#admin.site.register(Employee,EmployeeAdmin)
+#admin.site.register(Department,DepartmentAdmin)
 # admin.site.register(EmployeeDetail,EmployeeDetailAdmin)
 
 

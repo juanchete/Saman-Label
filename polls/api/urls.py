@@ -1,8 +1,7 @@
-from django.urls import path
-
-from .views import Prod_ListaListView, Prod_ListaDetailView
+from django.urls import path,include
+from  .views import DescuentoDetailView, DescuentoListView
 
 urlpatterns = [
-    path('', Prod_ListaListView.as_view()),
-    path('<pk>', Prod_ListaDetailView.as_view()) ,
+    path('', DescuentoListView.as_view()),
+    path('<pk>', DescuentoDetailView.as_view())
 ]

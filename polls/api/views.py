@@ -1,16 +1,11 @@
-#from rest_framework import status
-#from rest_framework import Response
-#from rest_framework.decorators import api_view
 from rest_framework.generics import ListAPIView, RetrieveAPIView
-from polls.models import Prod_Lista,ProductoId
-from polls.api.serializers import *
+from polls.models import Descuento
+from .serializers import DescuentoSerializer
 
+class DescuentoListView(ListAPIView):
+    queryset=Descuento.objects.all()
+    serializer_class=DescuentoSerializer
 
-class Prod_ListaListView(ListAPIView):
-    queryset = Prod_Lista.objects.all()
-    serializer_class = ProductoListaSerializer
-
-class Prod_ListaDetailView(RetrieveAPIView):
-    queryset = Prod_Lista.objects.all()
-    serializer_class = ProductoListaSerializer
-    
+class DescuentoDetailView(RetrieveAPIView):
+    queryset=Descuento.objects.all()
+    serializer_class=DescuentoSerializer

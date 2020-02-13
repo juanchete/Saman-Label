@@ -9,18 +9,20 @@ class ProductoId(models.Model):
         return self.name
 
 class Prod_Lista(models.Model):
-    kind = models.ForeignKey("ProductoId",on_delete=models.CASCADE)
+    kind = models.ForeignKey(ProductoId,on_delete=models.CASCADE)
     name = models.CharField( max_length=20)
     price = models.IntegerField()
+    discount = models.IntegerField(default=0)
     def __str__(self):
         return self.name
 
 class Prod_Stock(models.Model):
-    serializador = models.ForeignKey("Prod_Lista",  on_delete=models.CASCADE)
+    serializador = models.ForeignKey(Prod_Lista,  on_delete=models.CASCADE)
     buy = models.IntegerField()
     sold = models.IntegerField()
-    def __str__(self):
-        return self.name
+   # def __str__(self):
+    #    return self.name
+    
 
 # Tablas de Cliente 
 
@@ -28,9 +30,8 @@ class Cliente(models.Model):
     name = models.CharField(max_length=10)
     last_name = models.CharField(max_length=50)
     cedula = models.IntegerField()
-    telephone = models.BigIntegerField(null=False)
-    # birthday = models.DateField( auto_now=False, auto_now_add=False)
-
+    telephone = models.BigIntegerField(default="", editable=False)
+    birthday = models.DateField(default='1999-05-10')
 
     def __str__(self):
         return self.name
@@ -48,7 +49,7 @@ class NominaDetallada(models.Model):
     name = models.CharField( max_length=10)
     last_name = models.CharField(max_length=10)
     salary = models.IntegerField()
-    department = models.ForeignKey("NominaDept",on_delete=models.CASCADE)
+    department = models.ForeignKey(NominaDept,on_delete=models.CASCADE)
     
     def __str__(self):
         return self.name
@@ -56,64 +57,32 @@ class NominaDetallada(models.Model):
 # Tabla de Delivery
 
 class Delivery (models.Model):
-    client = models.ForeignKey("Cliente",on_delete=models.CASCADE)
+    client = models.ForeignKey(Cliente ,on_delete=models.CASCADE)
     direction = models.CharField( max_length=50)
-    employee = models.ForeignKey("NominaDetallada",on_delete=models.CASCADE)
-    # time = models.TimeField(auto_now=False, auto_now_add=False)
-    
-    def __str__(self):
-        return self.name
-
-# Factura
-
-class Factura (models.Model):
-    cliente = models.ForeignKey("Cliente",  on_delete=models.CASCADE)
-    employee = models.ForeignKey("NominaDetallada", on_delete=models.CASCADE)
-    descuento = models.BooleanField(default=False)
-    price = models.IntegerField()
-    # day = models.DateField( auto_now=False, auto_now_add=False)
-    # time = models.TimeField( auto_now=False, auto_now_add=False)
-
-    def __str__(self):
-        return self.name
-
-class FacturaDetallada (models.Model):
-    serial = models.ForeignKey("Factura", on_delete=models.CASCADE)
-    precio = models.IntegerField()
-
-    
-
-    
-    def __str__(self):
-        return self.name
+    employee = models.ForeignKey(NominaDetallada, on_delete=models.CASCADE)
+    # time = models.TimeField(default='')
+    # def __str__(self):
+    #     return self.name
+    # Factura
 
 class Descuento (models.Model):
     tipoDescuento = models.CharField(max_length=20)
     porcentaje = models.IntegerField()
 
+class Factura (models.Model):
+    cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
+    employee = models.ForeignKey(NominaDetallada, on_delete=models.CASCADE)
+    descuento = models.BooleanField(default=False)
+    price = models.IntegerField()
+    serialDescuento = models.ForeignKey(Descuento, on_delete=models.CASCADE, default='')
+    day = models.DateField( default='1965-05-02' )
+    # time = models.TimeField( default='' )
+    # def __str__(self):
+    #return self.name
 
- #class Cliente(models.Model):
-#     name = models.CharField(max_length=20)
-#     last_name = models.CharField(max_length=20, default = '')
-#     identification = models.IntegerField()
-#     def __str__(self):
-#         return self.name
+class FacturaDetallada (models.Model):
+    serial = models.ForeignKey(Factura, on_delete=models.CASCADE)
+    precio = models.IntegerField()
 
-# class Department (models.Model):
-#     departmen_name = models.CharField(max_length=50)
-#     def __str__(self):
-#         return self.departmen_name
-
-# class Employee (models.Model):
-#     employee_id = models.IntegerField()
-#     name = models.CharField(max_length=15,default='')
-#     last_name = models.CharField(max_length=10, default='')
-#     department_name = models.ForeignKey("Department", on_delete=models.SET_DEFAULT,default='1')
-#     hours = models.IntegerField(default=8)
-#     salary = models.IntegerField(default=100)
-#     active = models.BooleanField(default=True)
-#     def __str__(self):
-#         return self.name
-
-# Create your models here.
-
+    # def __str__(self):
+    #     return self.name

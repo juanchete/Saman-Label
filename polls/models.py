@@ -1,16 +1,16 @@
 from django.db import models
 
 
-# Tablas de Productos
+#Tablas de Productos
 
-class ProductoId(models.Model):
-    name = models.CharField( max_length=20)
+class Category(models.Model):
+    name= models.CharField(max_length=60)
     def __str__(self):
         return self.name
 
 class Prod_Lista(models.Model):
-    kind = models.ForeignKey(ProductoId,on_delete=models.CASCADE)
-    name = models.CharField( max_length=20)
+    name = models.CharField(max_length=20)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)
     price = models.IntegerField()
     discount = models.IntegerField(default=0)
     def __str__(self):
@@ -30,7 +30,7 @@ class Cliente(models.Model):
     name = models.CharField(max_length=10)
     last_name = models.CharField(max_length=50)
     cedula = models.IntegerField()
-    telephone = models.BigIntegerField(default="", editable=False)
+    telephone = models.BigIntegerField(null=True)
     birthday = models.DateField(default='1999-05-10')
 
     def __str__(self):
@@ -39,10 +39,10 @@ class Cliente(models.Model):
 # Tablas de Nomina de Trabajadores
 
 class NominaDept (models.Model):
-    department = models.CharField(max_length=20)
+    departmentname = models.CharField(max_length=20)
     
     def __str__(self):
-        return self.department
+        return self.departmentname
 
 class NominaDetallada(models.Model):
     cedula = models.IntegerField()

@@ -1,20 +1,16 @@
 from rest_framework import serializers
-from polls.models import Cliente,Prod_Lista,ProductoId,Prod_Stock,NominaDept,NominaDetallada,Delivery,Descuento,Factura,FacturaDetallada
+from polls.models import Cliente,Prod_Lista,Prod_Stock,NominaDept,NominaDetallada,Delivery,Descuento,Factura,FacturaDetallada
 
 class ClienteSerializer(serializers.ModelSerializer):
     class Meta:
         model= Cliente
-        fields = ['name', 'last_name','cedula','telephone','birthday']
-
-class ProductoSerializer(serializers.ModelSerializer):
-    class Meta:
-        model= ProductoId
-        fields = ('name')
+        fields = ['name', 'last_name','cedula', 'telephone','birthday']
 
 class ProductoListaSerializer(serializers.ModelSerializer):
+    category = serializers.StringRelatedField(many=False, read_only=True)
     class Meta:
         model= Prod_Lista
-        fields = ['kind','name','price']
+        fields = ['id','category','name','price','discount']
 
 class ProductStockSerializer(serializers.ModelSerializer):
     class Meta:

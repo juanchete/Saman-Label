@@ -1,7 +1,5 @@
 import React from 'react';
-import Layout from '../containers/Layout'
 import { List, Avatar, Icon } from 'antd';
-
 
 const IconText = ({ type, text }) => (
   <span>
@@ -10,8 +8,8 @@ const IconText = ({ type, text }) => (
   </span>
 );
 
-
 const Productos = (props) =>{
+  console.log(props.link)
     return(
         <List
     itemLayout="vertical"
@@ -29,6 +27,7 @@ const Productos = (props) =>{
       </div>
     }
     renderItem={item => (
+
       <List.Item
         key={item.title}
         actions={[
@@ -44,9 +43,10 @@ const Productos = (props) =>{
           />
         }
       >
-        <List.Item.Meta
+        <List.Item.Meta 
           avatar={<Avatar src={item.avatar} />}
-          title={<a href={`${item.id}`}>{item.name}</a>}
+          title={<a href={props.link+`/`+`${item.id}`}>{item.name}</a>}
+
           description={item.description}
         />
         {item.content}

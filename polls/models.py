@@ -96,7 +96,7 @@ class Factura (models.Model):
     price = models.IntegerField()
     serialDescuento = models.ForeignKey(
         Descuento, on_delete=models.CASCADE, default='')
-    day = models.DateField(default='1965-05-02')
+    day = models.DateTimeField(auto_now=True)
     # time = models.TimeField( default='' )
     # def __str__(self):
     # return self.name

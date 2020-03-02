@@ -24,7 +24,6 @@ class FormCarrito extends React.Component{
                 var employee = this.state.value2;
                 var descuento = this.state.value3;
                 var producto = this.state.value1;
-                var 
                 var sell = event.target.elements.sell.value;
                 var data = {
                     'cliente' : cliente,

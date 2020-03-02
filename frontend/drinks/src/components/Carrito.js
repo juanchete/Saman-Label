@@ -24,28 +24,27 @@ class FormCarrito extends React.Component{
                 var employee = this.state.value2;
                 var descuento = this.state.value3;
                 var producto = this.state.value1;
-                var 
                 var sell = event.target.elements.sell.value;
-                var data = {
+                var data1 = {
                     'cliente' : cliente,
                     'employee' : employee,
                     'descuento': descuento,
                     'producto':producto,
-                    'sell':sell
 
                 }
-                axios.post('http://127.0.0.1:8000/api/factura/', data)
+                var data2 = {
+                    'sell':sell
+                }
+                axios.post('http://127.0.0.1:8000/api/factura/', data1)
                 .then(res => console.log(res))
                 .catch(error => console.error(error));
-                axios.get("http://127.0.0.1:8000/api/stock/")
-            .then(res =>{
-                this.setState({
-                    descuento: res.data
-                });
-            })
+                axios.put(`http://127.0.0.1:8000/api/stock/${producto}`,data2)
+                .then(res => console.log(res))
+                .catch(error => console.log(error));
+
         }
         
-      
+        
       
     OnChange = (event) => {
     this.setState({ value: event.target.value })

@@ -2,14 +2,18 @@ import React from 'react';
 import { Form, Input, Button, Select } from 'antd';
 import axios from 'axios';
 import DatePicker from 'react-date-picker';
-import CheckableTag from 'antd/lib/tag/CheckableTag';
+import { Checkbox } from 'antd';
 
 class FormClientes extends React.Component {
     
     state = {
         date: new Date(),
+        e : true
       }
     onChange = date => this.setState({ date })
+
+    onChange1= e => this.setState({e}) 
+        
 
     handleFormSubmit = (event, requestType, clienteID, djangoModel) => {
         event.preventDefault();
@@ -18,9 +22,11 @@ class FormClientes extends React.Component {
                 var last_name = event.target.elements.last_name.value;
                 var cedula = event.target.elements.cedula.value;
                 var telephone = event.target.elements.cedula.value;
+                console.log(this.state.e.target.checked)
+                var available = this.state.e.target.checked;
                 console.log(this.state.date)
                 this.state.date = this.state.date.getFullYear() + "-"+ parseInt(this.state.date.getMonth()+1) +"-"+this.state.date.getDate();
-                var birthday = this.state.date
+                var birthday = this.state.date;
 
                 
         }else{
@@ -35,7 +41,8 @@ class FormClientes extends React.Component {
                     "last_name": last_name,
                     "telephone": telephone,
                     "birthday": birthday,
-                    "cedula": cedula
+                    "cedula": cedula,
+                    "available":available
                 }
                 return axios.post('http://127.0.0.1:8000/api/clientes/', data)
                     .then(res => console.log(res))
@@ -83,6 +90,9 @@ class FormClientes extends React.Component {
                     onChange={this.onChange}
                     value={this.state.date}
                     />
+                    </Form.Item>
+                    <Form.Item>
+                    <Checkbox onChange={this.onChange1}>Disponible</Checkbox>
                     </Form.Item>
                     <Form.Item>
                         <Button type="primary" htmlType="submit" >{this.props.btnText}</Button>

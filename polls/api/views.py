@@ -53,18 +53,14 @@ class ListaDescuentoViewSets(viewsets.ModelViewSet):
 def queryChill (request):
     name = []
     cant = []
-
-    q=Prod_Lista.objects.value('category').annotate(j=Count('category'))
-
+    q=Prod_Lista.objects.values('category').annotate(j=Count('category'))
     for x in q:
         name.append(x['category'])
         cant.append(x['j'])
-
     data = {
         'Name':name,
         'CantProd':cant
     }
-        
     return JsonResponse(data)
 
 # from rest_framework.generics import ListAPIView, RetrieveAPIView, ListCreateAPIView, DestroyAPIView, UpdateAPIView

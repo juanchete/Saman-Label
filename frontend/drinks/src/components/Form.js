@@ -27,7 +27,8 @@ class CustomForm extends React.Component {
             case "Productos":
                 name = event.target.elements.name.value;
                 var price = event.target.elements.price.value;
-                var category = this.state.value
+                var category = this.state.value;
+                console.log(this.state.value)
                 var discount = event.target.elements.discount.value;
                 break;
             case "Clientes":

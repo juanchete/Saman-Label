@@ -49,6 +49,13 @@ class ListaDescuentoViewSets(viewsets.ModelViewSet):
     serializer_class = ListaDescuentoSerializer
     queryset = ListaDescuento.objects.all()
 
+class RecibosViewSets(viewsets.ModelViewSet):
+    serializer_class = ReciboSerializer
+    queryset = Recibo.objects.all()
+
+class TarjetasViewSets(viewsets.ModelViewSet):
+    serializer_class = TarjetasSerializer
+    queryset = Tarjetas.objects.all()
 
 def queryChill (request):
     name = []

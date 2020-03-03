@@ -79,6 +79,8 @@ admin.site.register(Delivery)
 admin.site.register(Factura)
 admin.site.register(FacturaDetallada)
 admin.site.register(Descuento)
+admin.site.register(Recibo)
+admin.site.register(Tarjetas)
 
 # # class EmployeeDetailAdmin (admin.ModelAdmin):
 # # list_display=('employee_id','name','department_name','hours','salary','active')

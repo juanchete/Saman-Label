@@ -78,16 +78,16 @@ class CarritoView extends React.Component {
     <div>
     <h2>Carrito</h2>
     {<FormCarrito
-    title1="Ingrese cedula del cliente"
-    title2="Eliga el producto"
-    title3="Ingrese la cantidad"
-    title4="Seleccione trabajador"
-    dato1="cedula"
-    dato2="serializador"
-    dato3="sell"
-    dato4="cedula"
-    title5="Seleccione descuento"
-    dato5="cedula"
+    // title1="Ingrese cedula del cliente"
+    // title2="Eliga el producto"
+    // title3="Ingrese la cantidad"
+    // title4="Seleccione trabajador"
+    // dato1="cedula"
+    // dato2="serializador"
+    // dato3="sell"
+    // dato4="cedula"
+    // title5="Seleccione descuento"
+    // dato5="cedula"
     dataCliente={this.state.cliente}
     dataCategorias={this.state.categorias}
     dataStock={this.state.stock}

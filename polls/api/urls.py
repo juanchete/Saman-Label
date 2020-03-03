@@ -13,6 +13,8 @@ router.register(r'factura', FacturaViewSet, basename='Factura')
 router.register(r'facturaDetallada', FacturaDetalladaViewSet, basename='FacturaDetallada')
 router.register(r'descuento', DescuentoViewSet, basename='Descuento')
 router.register(r'listaDescuento', ListaDescuentoViewSets, basename='ListaDescuento')
+router.register(r'recibos', RecibosViewSets, basename='Recibo')
+router.register(r'tarjetas', TarjetasViewSets, basename='Tarjetas')
 
 
 urlpatterns = router.urls

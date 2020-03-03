@@ -23,7 +23,7 @@ class Prod_Lista(models.Model):
 
 
 class Prod_Stock(models.Model):
-    serializador = models.ForeignKey(Prod_Lista, on_delete=models.CASCADE)
+    serializador = models.OneToOneField(Prod_Lista, on_delete=models.CASCADE)
     buy = models.IntegerField()
     sold = models.IntegerField()
    # def __str__(self):
@@ -95,16 +95,43 @@ class Factura (models.Model):
     descuento = models.BooleanField(default=False)
     price = models.IntegerField()
     serialDescuento = models.ForeignKey(
-        Descuento, on_delete=models.CASCADE, default='')
-    day = models.DateField(default='1965-05-02')
+    Descuento, on_delete=models.CASCADE, default='')
+    day = models.DateTimeField(auto_now=True)
     # time = models.TimeField( default='' )
     # def __str__(self):
     # return self.name
 
 
 class FacturaDetallada (models.Model):
-    serial = models.ForeignKey(Factura, on_delete=models.CASCADE)
-    precio = models.IntegerField()
+    factura = models.ForeignKey(Factura, on_delete=models.CASCADE)
+    serial = models.ForeignKey(Prod_Lista, on_delete=models.CASCADE)
+    precioI = models.IntegerField()
+    precioF =  models.IntegerField()
+
 
     # def __str__(self):
     #     return self.name
+
+
+class Recibo (models.Model):
+    factura = models.ForeignKey(Factura, on_delete=models.CASCADE)    
+
+    Instrumento = ( ('TARJETA', ('tarjeta')),
+        ('EFECTIVO', ('efectivo')))
+    Instrumentos = models.CharField(max_length =9, choices =Instrumento)   
+    
+    Monto = models.IntegerField()
+
+
+
+class Tarjetas (models.Model):
+    idPago = models.ForeignKey( Recibo, on_delete=models.CASCADE),
+    noTarjeta = models.BigIntegerField()
+    CVV = models.IntegerField()
+    bancos = ( ('PROVINCIAL', ('Provincial')), 
+    ('BANPLUS', ('Banplus')),
+    ('MERCANTIL', ('Mercantil'))
+    )
+    cedula =  models.IntegerField()
+    vencimiento = models.DateField()
+    banco = models.CharField(max_length=12, choices=bancos)

@@ -118,17 +118,17 @@ class Recibo (models.Model):
 
     Instrumento = ( ('TARJETA', ('tarjeta')),
         ('EFECTIVO', ('efectivo')))
-    Instrumentos = models.CharField(max_length =9, choices =Instrumento)   
+    Instrumentos = models.CharField(max_length = 9, choices = Instrumento)   
     
     Monto = models.IntegerField()
 
 
 
 class Tarjetas (models.Model):
-    idPago = models.ForeignKey( Recibo, on_delete=models.CASCADE),
+    idPago = models.ForeignKey(Recibo, on_delete=models.CASCADE)
     noTarjeta = models.BigIntegerField()
     CVV = models.IntegerField()
-    bancos = ( ('PROVINCIAL', ('Provincial')), 
+    bancos = ( ('PROVINCIAL', ('Provincial')),
     ('BANPLUS', ('Banplus')),
     ('MERCANTIL', ('Mercantil'))
     )

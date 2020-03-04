@@ -44,7 +44,7 @@ class FacturaSerializer(serializers.ModelSerializer):
 class FacturaDetalladaSerializer(serializers.ModelSerializer):
     class Meta:
         model= FacturaDetallada
-        fields = ['factura','serial','precioI', 'precioF']
+        fields = ['factura','serial','precioI','precioF']
 
 class DescuentoSerializer(serializers.ModelSerializer):
     class Meta:
@@ -62,6 +62,7 @@ class ReciboSerializer(serializers.ModelSerializer):
         fields = ['factura','Instrumentos','Monto', 'id']
 
 class TarjetasSerializer(serializers.ModelSerializer):
+    idPago= serializers.PrimaryKeyRelatedField(read_only=True, many=True)
     class Meta:
         model = Tarjetas
         fields = ['idPago','noTarjeta','CVV','banco','cedula','vencimiento']        

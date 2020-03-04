@@ -125,7 +125,7 @@ class Recibo (models.Model):
 
 
 class Tarjetas (models.Model):
-    idPago = models.ForeignKey( Recibo, on_delete=models.CASCADE),
+    idPago = models.ForeignKey( Recibo, on_delete=models.CASCADE)
     noTarjeta = models.BigIntegerField()
     CVV = models.IntegerField()
     bancos = ( ('PROVINCIAL', ('Provincial')), 

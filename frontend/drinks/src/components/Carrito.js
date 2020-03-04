@@ -205,6 +205,10 @@ class FormCarrito extends React.Component {
                     </Form.Item>
 
                     <Form.Item>
+                        <Button type="primary" onclick={NewProducto()} >añadir</Button>
+                    </Form.Item>
+
+                    <Form.Item>
                         <Button type="primary" htmlType="submit" >{this.props.btnText}</Button>
                     </Form.Item>
 

@@ -5,10 +5,11 @@ import axios from 'axios';
 import { InputNumber } from 'antd';
 import { Checkbox } from 'antd';
 
-var xs = 1;
+var xs1 = [1];
 var x1 = 0;
-var valoris = 0;
-var valorib = 0;
+var valoris = [0];
+var valorib = [0];
+var cantidad1= [0];
 
 class FormCarrito extends React.Component {
 
@@ -16,28 +17,30 @@ class FormCarrito extends React.Component {
         super(props);
         this.state = {
             value: 'a',
-            value1: undefined,
+            value1: [],
             value2: undefined,
             value3: undefined,
             value4: undefined,
             value5: undefined,
+            cantidad: [0],
+            xs:[1],
             e: false
 
         }
     }
 
-    handleFormSubmit = (event) => {
-
+    handleFormSubmit = (event, cantidad) => {
+        for(const x in cantidad){
         var cliente = this.state.value4;
         var employee = this.state.value2;
         var descuento = this.state.e.target.checked;
         var serialdescuento = this.state.value3;
-        var producto = this.state.value1;
-        var buy = valorib;
-        var sell = valoris;
+        var producto = this.state.value1[x];
+        var buy = valorib[x];
+        var sell = valoris[x];
         try {
-            sell = document.getElementById("cantidad") + valoris;
-            buy = valorib - document.getElementById("cantidad");
+            sell = document.getElementById("cantidad") + valoris[x];
+            buy = valorib[x] - document.getElementById("cantidad");
         } catch{
             alert('No puedes comprar esto we');
         }
@@ -59,10 +62,12 @@ class FormCarrito extends React.Component {
         axios.put(`http://127.0.0.1:8000/api/stock/${producto}`, data2)
             .then(res => console.log(res))
             .catch(error => console.log(error));
-
+    }
     }
 
+    NewProducto (){
 
+    }
 
     OnChange = (event) => {
         this.setState({ value: event.target.value })
@@ -88,10 +93,22 @@ class FormCarrito extends React.Component {
         console.log('search:', val);
     }
 
-    _handleChangeProducto = (event) => {
-        this.setState({ value1: event.target.value })
-        this.setState({ value5: event.target.value })
-        xs = event.target.value;
+    _handleChangeProducto = (event, index) => {
+        let a = this.state.value1.slice();
+        if(a.length==1){
+            a.push(event.target.value)
+        }else{
+        a[index]= event.target.value}
+        this.setState({ value1: a })
+        if(xs1.length==1){
+        xs1.push(event.target.value)}else{
+            xs1[index]=event.target.value
+
+        }
+        console.log(xs1)
+        console.log(xs1[index])
+        this.setState({xs:xs1})
+        this.setState({cantidad: cantidad1})
         console.log()
         console.log(event.target.value)
     }
@@ -108,6 +125,13 @@ class FormCarrito extends React.Component {
         console.log(event.target.value)
     }
 
+    NewProducto(){
+        cantidad1 = this.state.cantidad;
+        cantidad1.push(cantidad1.length);
+        this.setState({cantidad :cantidad1});
+        this.setState({xs:xs1})
+        console.log(this.state.cantidad);
+    }
 
     render() {
         const { dataProductos } = this.props
@@ -137,11 +161,16 @@ class FormCarrito extends React.Component {
                         </select>
                     </Form.Item>
                     <Form.Item label={this.props.title2}>
-                        <select defaultValue="Select" style={{ width: 120 }} onChange={this._handleChangeProducto}>
+                      { cantidad1.map((producto)=> {
+                          console.log(producto)
+                          return ( 
+                          
+                        <div>  
+                        <select defaultValue="Select" style={{ width: 120 }} onChange={(event)=>this._handleChangeProducto(event, producto)}>
                             {this.props.dataProductos.map(item => {
                                 if (item.available) {
                                     return (
-                                        <option value={item.id} >{item.price}</option>
+                                    <option value={item.id} >{item.name}{item.price}</option>
                                     )
 
                                 }
@@ -149,24 +178,35 @@ class FormCarrito extends React.Component {
                             }
 
                         </select>
-                    </Form.Item>
-                    <Form.Item >
-                        {this.props.dataStock.map(item => {
-                            console.log(xs);
+                        <div>
 
-                            if (xs == item.serializador) {
-                                valorib = item.buy;
-                                valoris = item.sold;
+                        {this.props.dataStock.map(item => {
+                            console.log(producto)
+                            console.log(this.state.xs)
+                            console.log(this.state.xs[producto]);
+                            if(producto.length==1){
+                                valorib[producto] = item.buy;
+                                valoris[producto] = item.sold;
+                                console.log(valoris)
+                                return (
+                                    <InputNumber min={0} max={item.buy} defaultValue={0} id='cantidad' />
+                                )}else{
+                                    console.log(this.state.xs[producto])
+                            if (this.state.xs[producto] == item.serializador) {
+                                valorib[producto] = item.buy;
+                                valoris[producto] = item.sold;
                                 console.log(valoris)
                                 return (
                                     <InputNumber min={0} max={item.buy} defaultValue={0} id='cantidad' />
                                 )
                             }
-
+                            }
 
                         })
                         }
-
+                        </div>
+                        </div>
+                      )})}
 
                     </Form.Item>
                     {/* <Select
@@ -205,7 +245,7 @@ class FormCarrito extends React.Component {
                     </Form.Item>
 
                     <Form.Item>
-                        <Button type="primary" onclick={NewProducto()} >añadir</Button>
+                        <Button type="primary" onClick={this.NewProducto.bind(this)} >añadir</Button>
                     </Form.Item>
 
                     <Form.Item>

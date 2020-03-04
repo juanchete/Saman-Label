@@ -47,7 +47,7 @@ class DescuentoViewSet(viewsets.ModelViewSet):
 
 class ListaDescuentoViewSets(viewsets.ModelViewSet):
     serializer_class = ListaDescuentoSerializer
-    queryset = ListaDescuento.objects.all()
+    queryset = ListaDescuentoP.objects.all()
 
 class RecibosViewSets(viewsets.ModelViewSet):
     serializer_class = ReciboSerializer

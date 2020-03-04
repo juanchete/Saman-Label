@@ -34,12 +34,8 @@ class Prod_Stock(models.Model):
 class Cliente(models.Model):
     name = models.CharField(max_length=10)
     last_name = models.CharField(max_length=50)
-<<<<<<< HEAD
-    cedula = models.IntegerField( unique = True)
-=======
     cedula = models.IntegerField(unique=True)
     direction = models.CharField(max_length=100)
->>>>>>> origin/Develop-Gianluca
     telephone = models.BigIntegerField(null=True)
     birthday = models.DateField(default='1999-05-10')
     available = models.BooleanField(default=True)
@@ -128,11 +124,7 @@ class Recibo (models.Model):
 
 
 class Tarjetas (models.Model):
-<<<<<<< HEAD
-    idPago = models.ForeignKey( Recibo, on_delete=models.CASCADE)
-=======
     idPago = models.ForeignKey(Recibo, on_delete=models.CASCADE)
->>>>>>> origin/Develop-Gianluca
     noTarjeta = models.BigIntegerField()
     CVV = models.IntegerField()
     bancos = ( ('PROVINCIAL', ('Provincial')),

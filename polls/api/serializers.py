@@ -9,7 +9,7 @@ class ClienteSerializer(serializers.ModelSerializer):
 class ProductoListaSerializer(serializers.ModelSerializer):
     class Meta:
         model= Prod_Lista
-        fields = ["id","category","name","price","discount",'available']
+        fields = ["id","category","name","price",'available']
 
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
@@ -53,7 +53,7 @@ class DescuentoSerializer(serializers.ModelSerializer):
     
 class ListaDescuentoSerializer(serializers.ModelSerializer):
     class Meta:
-        model = ListaDescuento
+        model = ListaDescuentoP
         fields = ['serial','porcentaje','available']
 
 class ReciboSerializer(serializers.ModelSerializer):

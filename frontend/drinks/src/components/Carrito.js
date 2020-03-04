@@ -1,4 +1,4 @@
-import { Select } from 'antd';
+import { Select, Alert } from 'antd';
 import React from 'react';
 import { Form, Input, Button } from 'antd';
 import axios from 'axios';
@@ -10,6 +10,8 @@ var x1 = 0;
 var valoris = [0];
 var valorib = [0];
 var cantidad1= [0];
+var descuento =  false;
+var lDescuento = [1];
 
 class FormCarrito extends React.Component {
 
@@ -21,12 +23,14 @@ class FormCarrito extends React.Component {
             value2: undefined,
             value3: undefined,
             value4: undefined,
-            value5: undefined,
-            cantidad: [0],
-            xs:[1],
+            IDescuento: [0],
+            precio: undefined,
+            cantidad: [0], //esta  es la cantidad de productos diferentes que estan siendo comprados
+            xs:[1], //esto es el vector que contiene el id al que se le modificara el stock
             e: false
 
         }
+        console.log(this.state.value1.length)
     }
 
     handleFormSubmit = (event, cantidad) => {
@@ -65,9 +69,6 @@ class FormCarrito extends React.Component {
     }
     }
 
-    NewProducto (){
-
-    }
 
     OnChange = (event) => {
         this.setState({ value: event.target.value })
@@ -78,7 +79,12 @@ class FormCarrito extends React.Component {
         console.log(`selected ${value}`);
     }
 
-    onChange1 = e => this.setState({ e })
+    onChange1 = e => {
+        
+        descuento=!descuento
+        
+        this.setState({ e })
+    }
 
     onBlur() {
         console.log('blur');
@@ -94,14 +100,18 @@ class FormCarrito extends React.Component {
     }
 
     _handleChangeProducto = (event, index) => {
+        console.log(index)
         let a = this.state.value1.slice();
-        if(a.length==1){
+        if(a.length==0){
             a.push(event.target.value)
         }else{
         a[index]= event.target.value}
+        console.log(a)
         this.setState({ value1: a })
         if(xs1.length==1){
-        xs1.push(event.target.value)}else{
+            xs1 = [event.target.value]
+        }else{
+            
             xs1[index]=event.target.value
 
         }
@@ -122,15 +132,27 @@ class FormCarrito extends React.Component {
     }
     _handleChangeCliente = (event) => {
         this.setState({ value4: event.target.value })
-        console.log(event.target.value)
+    }
+
+    cantidad(e){
+        this.setState(this.state.descuento)
     }
 
     NewProducto(){
         cantidad1 = this.state.cantidad;
+        let a =0;
+        cantidad1.map(prod => {
+            a++;
+        })
+        if( a == this.props.dataProductos.length){
+            alert('no existen mas productos diferentes')
+        }else{
+            xs1.push(0)
+        
         cantidad1.push(cantidad1.length);
         this.setState({cantidad :cantidad1});
         this.setState({xs:xs1})
-        console.log(this.state.cantidad);
+        }
     }
 
     render() {
@@ -140,7 +162,7 @@ class FormCarrito extends React.Component {
         const { dataCliente } = this.props
         const { dataDescuento } = this.props
         const { dataNominaDetallada } = this.props
-
+        const { dataListaDescuento}  = this.props
 
 
         return (
@@ -189,7 +211,7 @@ class FormCarrito extends React.Component {
                                 valoris[producto] = item.sold;
                                 console.log(valoris)
                                 return (
-                                    <InputNumber min={0} max={item.buy} defaultValue={0} id='cantidad' />
+                                    <InputNumber min={0} max={item.buy} defaultValue={0} id='cantidad' onChange={ e=> this.cantidad(e)} />
                                 )}else{
                                     console.log(this.state.xs[producto])
                             if (this.state.xs[producto] == item.serializador) {
@@ -231,17 +253,19 @@ class FormCarrito extends React.Component {
                                 <option value={item.id}>{item.cedula}</option>)}
                         </select>
                     </Form.Item>
+                    
                     <Form.Item label={this.props.title5}>
 
-                        <Form.Item>
+                        
                             <Checkbox onChange={this.onChange1}>Disponible</Checkbox>
-                        </Form.Item>
-
+                        <div>
+                                {descuento ? ( 
                         <select defaultValue="Select" style={{ width: 120 }} onChange={this._handleChangeDescuento}>
 
                             {this.props.dataDescuento.map(item =>
                                 <option value={item.id}>{item.tipoDescuento}</option>)}
-                        </select>
+                        </select>) : null}
+                        </div>
                     </Form.Item>
 
                     <Form.Item>

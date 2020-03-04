@@ -34,7 +34,12 @@ class Prod_Stock(models.Model):
 class Cliente(models.Model):
     name = models.CharField(max_length=10)
     last_name = models.CharField(max_length=50)
+<<<<<<< HEAD
     cedula = models.IntegerField( unique = True)
+=======
+    cedula = models.IntegerField(unique=True)
+    direction = models.CharField(max_length=100)
+>>>>>>> origin/Develop-Gianluca
     telephone = models.BigIntegerField(null=True)
     birthday = models.DateField(default='1999-05-10')
     available = models.BooleanField(default=True)
@@ -67,16 +72,6 @@ class NominaDetallada(models.Model):
 # Tabla de Delivery
 
 
-class Delivery (models.Model):
-    client = models.ForeignKey(Cliente, on_delete=models.CASCADE)
-    direction = models.CharField(max_length=50)
-    employee = models.ForeignKey(NominaDetallada, on_delete=models.CASCADE)
-    # time = models.TimeField(default='')
-    # def __str__(self):
-    #     return self.name
-    # Factura
-
-
 class Descuento (models.Model):
     tipoDescuento = models.CharField(max_length=20)
     porcentaje = models.IntegerField()
@@ -100,12 +95,22 @@ class Factura (models.Model):
     # def __str__(self):
     # return self.name
 
+class Delivery (models.Model):
+
+    idFactura = models.ForeignKey(Factura, on_delete=models.CASCADE)
+    direction = models.CharField(max_length=50)
+    employee = models.ForeignKey(NominaDetallada, on_delete=models.CASCADE)
+    # time = models.TimeField(default='')
+    # def __str__(self):
+    #     return self.name
+    # Factura
 
 class FacturaDetallada (models.Model):
     factura = models.ForeignKey(Factura, on_delete=models.CASCADE)
     serial = models.ForeignKey(Prod_Lista, on_delete=models.CASCADE)
     precioI = models.IntegerField()
     precioF =  models.IntegerField()
+    cantidad = models.IntegerField()
 
 
     # def __str__(self):
@@ -117,17 +122,20 @@ class Recibo (models.Model):
 
     Instrumento = ( ('TARJETA', ('tarjeta')),
         ('EFECTIVO', ('efectivo')))
-    Instrumentos = models.CharField(max_length =9, choices =Instrumento)   
+    Instrumentos = models.CharField(max_length = 9, choices = Instrumento)   
     
     Monto = models.IntegerField()
 
 
-
 class Tarjetas (models.Model):
+<<<<<<< HEAD
     idPago = models.ForeignKey( Recibo, on_delete=models.CASCADE)
+=======
+    idPago = models.ForeignKey(Recibo, on_delete=models.CASCADE)
+>>>>>>> origin/Develop-Gianluca
     noTarjeta = models.BigIntegerField()
     CVV = models.IntegerField()
-    bancos = ( ('PROVINCIAL', ('Provincial')), 
+    bancos = ( ('PROVINCIAL', ('Provincial')),
     ('BANPLUS', ('Banplus')),
     ('MERCANTIL', ('Mercantil'))
     )

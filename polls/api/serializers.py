@@ -4,7 +4,7 @@ from polls.models import *
 class ClienteSerializer(serializers.ModelSerializer):
     class Meta:
         model= Cliente
-        fields = ['name', 'last_name','cedula', 'telephone','birthday','id','available']
+        fields = ['name', 'last_name','cedula', 'telephone','birthday','id','available','direction']
 
 class ProductoListaSerializer(serializers.ModelSerializer):
     class Meta:
@@ -24,7 +24,7 @@ class ProductStockSerializer(serializers.ModelSerializer):
 class NominaDeptSerializer(serializers.ModelSerializer):
     class Meta:
         model= NominaDept
-        fields = ['departmentname','available']
+        fields = ['departmentname','available','id']
 
 class NominaDetalladaSerializer(serializers.ModelSerializer):
     class Meta:
@@ -34,7 +34,7 @@ class NominaDetalladaSerializer(serializers.ModelSerializer):
 class DeliverySerializer(serializers.ModelSerializer):
     class Meta:
         model= Delivery
-        fields = ['client','direction','employee']
+        fields = ['direction','employee','idFactura']
 
 class FacturaSerializer(serializers.ModelSerializer):
     class Meta:
@@ -44,7 +44,7 @@ class FacturaSerializer(serializers.ModelSerializer):
 class FacturaDetalladaSerializer(serializers.ModelSerializer):
     class Meta:
         model= FacturaDetallada
-        fields = ['factura','serial','precioI', 'precioF']
+        fields = ['factura','serial','precioI','precioF','cantidad']
 
 class DescuentoSerializer(serializers.ModelSerializer):
     class Meta:
@@ -62,6 +62,7 @@ class ReciboSerializer(serializers.ModelSerializer):
         fields = ['factura','Instrumentos','Monto', 'id']
 
 class TarjetasSerializer(serializers.ModelSerializer):
+    idPago= serializers.PrimaryKeyRelatedField(read_only=True, many=True)
     class Meta:
         model = Tarjetas
         fields = ['idPago','noTarjeta','CVV','banco','cedula','vencimiento']        

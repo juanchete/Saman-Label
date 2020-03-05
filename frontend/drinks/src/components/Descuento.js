@@ -8,8 +8,10 @@ const IconText = ({ type, text }) => (
   </span>
 );
 
-const Productos = (props) =>{
+const Descuento = (props) =>{
   console.log(props.link)
+  const {data}= props
+  console.log(data)
     return(
         <List
     itemLayout="vertical"
@@ -43,9 +45,9 @@ const Productos = (props) =>{
           />
         }
       >
-        <List.Item.Meta 
+        <List.Item.Meta
           avatar={<Avatar src={item.avatar} />}
-          title={<a href={props.link+`/`+`${item.id}`}>{item.name}</a>}
+          title={<a href={props.link+`/`+`${item.id}`}>{item.tipoDescuento}</a>}
           // title={<a href={props.link+`/`+`${item.serializador}`}>{item.serializador}</a>}
           // title={<a href={props.link+`/`+`${item.id}`}>{item.departmentname}</a>}
           description={item.description}
@@ -56,5 +58,6 @@ const Productos = (props) =>{
   />
     )
 }
-export default Productos;
+export default Descuento;
+
        

@@ -1,7 +1,6 @@
 import React from 'react';
 import { Form, Input, Button, Select } from 'antd';
 import axios from 'axios';
-import ProductoList from '../containers/ProductoListView';
 
 class CustomForm extends React.Component {
     
@@ -29,7 +28,6 @@ class CustomForm extends React.Component {
                 var price = event.target.elements.price.value;
                 var category = this.state.value;
                 console.log(this.state.value)
-                var discount = event.target.elements.discount.value;
                 break;
             case "Clientes":
                 name = event.target.elements.name.value;
@@ -83,7 +81,7 @@ class CustomForm extends React.Component {
                     "category": category,
                     "name": name,
                     "price": price,
-                    "discount": discount
+                   
                 }
                 return axios.post('http://127.0.0.1:8000/api/productos/', data)
                     .then(res => console.log(res))
@@ -94,7 +92,7 @@ class CustomForm extends React.Component {
                     "category": category,
                     "name": name,
                     "price": price,
-                    "discount": discount
+
                 }
                 return axios.put(`http://127.0.0.1:8000/api/productos/${productoID}/`, data) 
                 .then(res => console.log(res))
@@ -126,9 +124,6 @@ class CustomForm extends React.Component {
                     </Form.Item> */}
                     <Form.Item label={this.props.title3}>
                         <Input name={this.props.dato3} placeholder={"Ingrese "+ this.props.dato3} />
-                    </Form.Item>
-                    <Form.Item label={this.props.title4}>
-                        <Input name={this.props.dato4} placeholder={"Ingrese "+ this.props.dato4} />
                     </Form.Item>
                     <Form.Item>
                         <Button type="primary" htmlType="submit" >{this.props.btnText}</Button>

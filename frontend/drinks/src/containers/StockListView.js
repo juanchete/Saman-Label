@@ -1,24 +1,24 @@
 import React from 'react';
-import Productos from '../components/Productos'
+import Productos from '../components/Productos';
 import axios from 'axios';
-import CustomForm from '../components/Form'
+import FormStock from '../components/FormStock';
 
-class ProductList extends React.Component {
+class StockList extends React.Component {
 
     state = {
-         productos: [],
-         categorias: []
+         stock: [],
+         productos: []
      }
 
         componentDidMount(){
             Promise.all([
                 axios.get('http://127.0.0.1:8000/api/productos/'),
-                axios.get('http://127.0.0.1:8000/api/categorias/')
-              ]).then(([productos1, categorias1]) => {
+                axios.get('http://127.0.0.1:8000/api/stock/')
+              ]).then(([productos1, stock1]) => {
                 // do something with both responses
                 this.setState({
                     productos: productos1.data,
-                    categorias: categorias1.data
+                    stock : stock1.data
                 })
               })};
     //     axios.get('http://127.0.0.1:8000/api/productos/')
@@ -31,30 +31,25 @@ class ProductList extends React.Component {
         
     //  }
 
-            
+
     render(){
-    
         return(
     <div>
-    <Productos data={this.state.productos} link="productos"/>
+    <Productos data={this.state.stock} link="stock"/>
     <br></br>
-    <h2>Crear producto</h2>
-    <CustomForm
+    <h2>Agregar Stock de producto</h2>
+    <FormStock
     requestType="post"
-    productoID={null}
-    djangoModel="Productos"
+    stockID={null}
     btnText="Create"
-    title1="Nombre del producto"
-    title2="Ingrese la categoria"
-    title3="Ingrese el precio"
-    dato1="name"
-    dato2="category"
-    dato3="price"
     dataProductos={this.state.productos}
-    dataCategorias={this.state.categorias}/>
+    dataStock={this.state.stock}
+    title1="Cantidad en Stock"
+    title2="Cantidad de Vendidos"
+    />
     </div>
         )
     }
 }
 
-export default ProductList;
+export default StockList;

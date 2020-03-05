@@ -14,10 +14,15 @@ const CustomLayout = (props)=>{
               defaultSelectedKeys={['2']}
               style={{ lineHeight: '64px' }}
             >
-              <Menu.Item><Link to="/Clientes">Clientes</Link></Menu.Item>
-              <Menu.Item><Link to="/Productos">Productos</Link></Menu.Item>
-              <Menu.Item><Link to="/Carrito">Carrito</Link></Menu.Item>
-              <Menu.Item><Link to="/Categorias">Categorias</Link></Menu.Item>
+              <Menu.Item><Link to="/clientes">Clientes</Link></Menu.Item>
+              <Menu.Item><Link to="/productos">Productos</Link></Menu.Item>
+              <Menu.Item><Link to="/carrito">Carrito</Link></Menu.Item>
+              <Menu.Item><Link to="/categorias">Categorias</Link></Menu.Item>
+              <Menu.Item><Link to="/stock">Stock</Link></Menu.Item>
+              <Menu.Item><Link to="/nominaDept">Departamentos</Link></Menu.Item>
+              <Menu.Item><Link to="/nominaDetallada">Empleados</Link></Menu.Item>
+              <Menu.Item><Link to="/descuento">Descuentos</Link></Menu.Item>
+              <Menu.Item><Link to="/listaDescuento">Descuentos Part</Link></Menu.Item>
             </Menu>
           </Header>
           <Content style={{ padding: '0 50px' }}>

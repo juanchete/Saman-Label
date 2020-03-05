@@ -1,5 +1,5 @@
 import React from 'react'
-import Productos from '../components/Productos'
+import Clientes from '../components/Clientes'
 import axios from 'axios'
 import FormClientes from '../components/FormClientes'
 
@@ -23,13 +23,14 @@ class ClienteList extends React.Component {
     render(){
         return(
     <div>
-    <Productos data={this.state.clientes} link="clientes"/>
+    <Clientes data={this.state.clientes.filter(function(item){
+        return item.available==true;
+    })} link="clientes"/>
     <br></br>
     <h2>Registrar Cliente</h2>
     {<FormClientes
     requestType="post"
     clienteID={null}
-    djangoModel="Clientes"
     title1="Ingrese nombre del cliente"
     title2="Ingrese el apellido"
     title3="Ingrese el telefono"
@@ -40,6 +41,8 @@ class ClienteList extends React.Component {
     dato4="birthday"
     title5="Ingrese cedula"
     dato5="cedula"
+    title6="Ingresa la direccion del cliente"
+    dato6="direction"
     dataClientes={this.state.clientes}
     btnText="Create"/> }
     </div>

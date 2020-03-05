@@ -8,9 +8,12 @@ const IconText = ({ type, text }) => (
   </span>
 );
 
-const Productos = (props) =>{
+const ListDescuento = (props) =>{
   console.log(props.link)
+  const {data}= props
+  console.log(data)
     return(
+        
         <List
     itemLayout="vertical"
     size="large"
@@ -43,7 +46,7 @@ const Productos = (props) =>{
           />
         }
       >
-        <List.Item.Meta 
+        <List.Item.Meta
           avatar={<Avatar src={item.avatar} />}
           title={<a href={props.link+`/`+`${item.id}`}>{item.name}</a>}
           // title={<a href={props.link+`/`+`${item.serializador}`}>{item.serializador}</a>}
@@ -56,5 +59,4 @@ const Productos = (props) =>{
   />
     )
 }
-export default Productos;
-       
+export default ListDescuento;

@@ -42,11 +42,9 @@ class ProductDetail extends React.Component {
     title1="Nombre del producto"
     title2="Ingrese la categoria"
     title3="Ingrese el precio"
-    title4="Ingrese el descuento"
     dato1="name"
     dato2="category"
     dato3="price"
-    dato4="discount"
     dataProductos={this.state.productos}
     dataCategorias={this.state.categorias}/>
     </div>

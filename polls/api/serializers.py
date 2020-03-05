@@ -39,7 +39,7 @@ class DeliverySerializer(serializers.ModelSerializer):
 class FacturaSerializer(serializers.ModelSerializer):
     class Meta:
         model= Factura
-        fields = ['cliente','employee','descuento','price','serialDescuento','day']
+        fields = ['cliente','employee','price','serialDescuento','day']
 
 class FacturaDetalladaSerializer(serializers.ModelSerializer):
     class Meta:
@@ -49,7 +49,7 @@ class FacturaDetalladaSerializer(serializers.ModelSerializer):
 class DescuentoSerializer(serializers.ModelSerializer):
     class Meta:
         model= Descuento
-        fields = ['tipoDescuento','porcentaje','id']
+        fields = ['tipoDescuento','porcentaje','id','available']
     
 class ListaDescuentoSerializer(serializers.ModelSerializer):
     class Meta:
@@ -62,7 +62,6 @@ class ReciboSerializer(serializers.ModelSerializer):
         fields = ['factura','Instrumentos','Monto', 'id']
 
 class TarjetasSerializer(serializers.ModelSerializer):
-    idPago= serializers.PrimaryKeyRelatedField(read_only=True, many=True)
-    class Meta:
-        model = Tarjetas
-        fields = ['idPago','noTarjeta','CVV','banco','cedula','vencimiento']        
+        class Meta:
+            model = Tarjetas
+            fields = ['id','idPago','noTarjeta','CVV','banco','cedula','vencimiento']        

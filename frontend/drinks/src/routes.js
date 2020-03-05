@@ -21,6 +21,7 @@ import listaDescuentoList from "./containers/listaDescuentoList";
 import listaDescuentoDetail from "./containers/listaDescuentoDetail";
 import TarjetasList from './containers/TarjetaList';
 import TarjetaDetail from './containers/TarjetaDetail';
+import queries from './containers/queries';
 const BaseRouter = () => (
     <div>
        <Route exact path='/productos' component={ProductList}/>
@@ -43,6 +44,7 @@ const BaseRouter = () => (
        <Route exact path='/listaDescuento/:listaDescuentoID' component={listaDescuentoDetail}/>
        <Route exact path='/tarjetas' component={TarjetasList}/>
        <Route exact path='/tarjetas/:tarjetasID' component={TarjetaDetail}/>
+       <Route exact path='/queries' component={queries}/>
        {/* <Route render={() => <Redirect to={{pathname: "/home"}} />} /> */}
     </div>
 );

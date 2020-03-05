@@ -60,13 +60,159 @@ class TarjetasViewSets(viewsets.ModelViewSet):
 def queryChill (request):
     name = []
     cant = []
-    q=Prod_Lista.objects.values('category').annotate(j=Count('category'))
+    q=Prod_Lista.objects.values('category__name').annotate(j=Count('category'))
     for x in q:
-        name.append(x['category'])
+        name.append(x['category__name'])
         cant.append(x['j'])
     data = {
         'Name':name,
         'CantProd':cant
+    }
+    return JsonResponse(data)
+    
+def queryRecomendaciones (request):
+    name = []
+    porcentaje = []
+    q=ListaDescuentoP.objects.values('serial__name','porcentaje').filter(available=True)
+
+    for x in q:
+        name.append(x['serial__name'])
+        porcentaje.append(x['porcentaje'])
+    
+    t=[]
+    
+    for x in range(len(q)):
+        k={'id':x+1 ,'name':name[x], 'porcentaje':porcentaje[x]}
+        t.append(k)
+    
+    data={
+
+        'sds':t
+        # 'Name':name,
+        # 'porcentaje':porcentaje
+    }
+
+    return JsonResponse(data) 
+
+def topProducts (request):
+    productos=[]
+    cant_prod=[]
+    q=FacturaDetallada.objects.values('serial__name').annotate(j=Sum('cantidad'))[:5]
+
+    for x in q:
+        productos.append(x['serial__name'])
+        cant_prod.append(x['j'])
+
+    t=[]
+
+    for x in range(len(q)):
+        k={'id':x+1, 'nombre':productos[x], 'cantidad':cant_prod[x]}
+        t.append(k) 
+    
+    data={
+
+        'productostop':t
+
+    }
+
+    return JsonResponse(data) 
+
+def ProductsVendidos (request):
+    productos=[]
+    cant_prod=[]
+
+    q=FacturaDetallada.objects.values('serial__name').annotate(j=Sum('cantidad'))
+
+    for x in q:
+        productos.append(x['serial__name'])
+        cant_prod.append(x['j'])
+
+    t=[]
+
+    for x in range(len(productos) ):
+        k={'id':x+1, 'nombre':productos[x], 'cantidad':cant_prod[x]}
+        t.append(k) 
+    
+    dat={
+
+        'productos':t
+
+    }
+
+    return JsonResponse(dat) 
+
+def EmpleadosDelMes (request):
+
+    empleado=[]
+    cant_ventas=[]
+
+    q=Factura.objects.values('employee__name').annotate(j=Count('employee'))
+    
+    for x in q:
+        empleado.append(x['employee__name'])
+        cant_ventas.append(x['j'])
+
+    t=[]
+
+    for x in range(len(empleado)):
+        k={'id':x+1, 'nombre':empleado[x], 'cantidad':cant_ventas[x]}
+        t.append(k) 
+
+    data={
+        'empleadoDelMes':t
+    }
+
+    return JsonResponse(data) 
+
+def empleadoMejoresPagados (request):
+
+    nombre=[]
+    salario=[]
+
+    q=NominaDetallada.objects.values('name','salary').filter(available=True)[:5]
+    
+    for x in q:
+        nombre.append(x['name'])
+        salario.append(x['salary'])
+    
+    t=[]
+
+    for x in range(len(nombre)):
+        k={'id':x+1, 'nombre':nombre[x], 'cantidad':salario[x]}
+        t.append(k)
+
+    data={
+
+        'empleadoMejoresPagados':t
+    }
+
+    return JsonResponse(data) 
+
+def trabajadoresJuan (request):
+
+    cedula=[]
+    name=[]
+    last_name=[]
+    salary=[]
+    department=[]
+
+    q=NominaDetallada.objects.values('cedula','name','last_name','salary','department__departmentname').filter(name__startswith='J')
+    
+    for x in q:
+        cedula.append(x['cedula'])
+        name.append(x['name'])
+        last_name.append(x['last_name'])
+        salary.append(x['salary'])
+        department.append(x['department__departmentname'])
+    
+    t=[]
+
+    for x in range(len(cedula)):
+        k={'id':x+1, 'cedula':cedula[x], 'name':name[x], 'last_name':last_name[x], 'salary':salary[x], 'department':department[x]}
+        t.append(k)
+
+    data={
+        'juanes':t
     }
     return JsonResponse(data)
 

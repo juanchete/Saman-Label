@@ -74,7 +74,7 @@ class Descuento (models.Model):
 
 
 class ListaDescuentoP(models.Model):
-    serial = models.ForeignKey(Prod_Lista, on_delete=models.CASCADE, default='')
+    serial = models.OneToOneField(Prod_Lista, on_delete=models.CASCADE, default='')
     available = models.BooleanField(default=True)
     porcentaje = models.IntegerField()
 
@@ -82,7 +82,6 @@ class ListaDescuentoP(models.Model):
 class Factura (models.Model):
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
     employee = models.ForeignKey(NominaDetallada, on_delete=models.CASCADE)
-    descuento = models.BooleanField(default=False)
     price = models.IntegerField()
     serialDescuento = models.ForeignKey(
     Descuento, on_delete=models.CASCADE, default='')

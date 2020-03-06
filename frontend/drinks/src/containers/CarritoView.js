@@ -10,7 +10,8 @@ class CarritoView extends React.Component {
         categorias: [],
         cliente: [],
         nominaDetallada:[],
-        descuento:[]
+        descuento:[],
+        listaDescuento:[]
     }
 
         // componentDidMount(){
@@ -65,6 +66,12 @@ class CarritoView extends React.Component {
                     descuento: res.data
                 });
             })
+            axios.get("http://127.0.0.1:8000/api/listaDescuento/")
+            .then(res =>{
+                this.setState({
+                    listaDescuento: res.data
+                });
+            })
         }
 
     render(){
@@ -94,6 +101,7 @@ class CarritoView extends React.Component {
     dataProductos={this.state.productos}
     dataNominaDetallada={this.state.nominaDetallada}
     dataDescuento={this.state.descuento}
+    dataListaDescuento={this.state.listaDescuento}
     btnText="Comprar"/> }
     </div>
         )

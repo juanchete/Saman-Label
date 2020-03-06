@@ -23,6 +23,7 @@ class listaDescuentoDetail extends React.Component {
         //     })
         // })};
        const listaDescuentoID = this.props.match.params.listaDescuentoID
+       
         axios.get(`http://127.0.0.1:8000/api/listaDescuento/${listaDescuentoID}`)
         .then(res =>{
             this.setState({
@@ -54,7 +55,9 @@ class listaDescuentoDetail extends React.Component {
         console.log(this.state.productos1)
         return(
     <div>
-    <Card title={this.state.productos.name}>
+    <Card title={"Actualizar descuento particular"}>
+        <h1>Del: {this.state.productos.name}</h1>
+        <h2>{this.state.listaDescuento.porcentaje+"%"}</h2>
         <p>Posee el serial: {this.state.listaDescuento.serial}</p>
 
     </Card>

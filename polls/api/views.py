@@ -2,7 +2,7 @@ from rest_framework import viewsets
 
 from polls.models import *
 from .serializers import *
-from django.db.models import Count
+from django.db.models import Count,Sum
 from django.http import JsonResponse
 
 class ProductoViewSet(viewsets.ModelViewSet):

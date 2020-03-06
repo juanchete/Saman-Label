@@ -1,6 +1,6 @@
 import React from 'react';
 import { List, Avatar, Icon } from 'antd';
-
+import DrinksLogo1 from '../containers/DrinksLogo1.PNG'
 const IconText = ({ type, text }) => (
   <span>
     <Icon type={type} style={{ marginRight: 8 }} />
@@ -25,7 +25,7 @@ const Department = (props) =>{
     dataSource={props.data}
     footer={
       <div>
-        <b>ant design</b> footer part
+        <b>Drinks 2020</b> footer part
       </div>
     }
     renderItem={item => (
@@ -41,7 +41,7 @@ const Department = (props) =>{
           <img
             width={272}
             alt="logo"
-            src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
+            src={DrinksLogo1}
           />
         }
       >

@@ -1,5 +1,6 @@
 import React from 'react';
 import { List, Avatar, Icon } from 'antd';
+import DrinksLogo1 from '../containers/DrinksLogo1.PNG'
 
 const IconText = ({ type, text }) => (
   <span>
@@ -32,16 +33,16 @@ const Descuento = (props) =>{
 
       <List.Item
         key={item.title}
-        actions={[
-          <IconText type="star-o" text="156" key="list-vertical-star-o" />,
-          <IconText type="like-o" text="156" key="list-vertical-like-o" />,
-          <IconText type="message" text="2" key="list-vertical-message" />,
-        ]}
+        // actions={[
+        //   <IconText type="star-o" text="156" key="list-vertical-star-o" />,
+        //   <IconText type="like-o" text="156" key="list-vertical-like-o" />,
+        //   <IconText type="message" text="2" key="list-vertical-message" />,
+        // ]}
         extra={
           <img
             width={272}
             alt="logo"
-            src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
+            src={DrinksLogo1}
           />
         }
       >
@@ -50,7 +51,7 @@ const Descuento = (props) =>{
           title={<a href={props.link+`/`+`${item.id}`}>{item.tipoDescuento}</a>}
           // title={<a href={props.link+`/`+`${item.serializador}`}>{item.serializador}</a>}
           // title={<a href={props.link+`/`+`${item.id}`}>{item.departmentname}</a>}
-          description={item.description}
+          description={"porcentaje: "+item.porcentaje+"%"}
         />
         {item.content}
       </List.Item>

@@ -1,5 +1,5 @@
 import React from 'react';
-import Productos from '../components/Productos'
+import Categoria from '../components/Categoria'
 import axios from 'axios';
 import FormCategoria from '../components/FormCategoria';
 
@@ -20,7 +20,7 @@ class CategoriasList extends React.Component{
     render(){
         return(
     <div>
-    <Productos data={this.state.categorias} link="categorias"/>
+    <Categoria data={this.state.categorias} link="categorias"/>
     <br></br>
     <h2>Registrar Categoria</h2>
     <FormCategoria

@@ -1,5 +1,6 @@
 import React from 'react';
 import { List, Avatar, Icon } from 'antd';
+import DrinksLogo1 from '../containers/DrinksLogo1.PNG'
 
 const IconText = ({ type, text }) => (
   <span>
@@ -39,18 +40,18 @@ const Productos = (props) =>{
           <img
             width={272}
             alt="logo"
-            src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
+            src={DrinksLogo1}
           />
         }
       >
         <List.Item.Meta 
           avatar={<Avatar src={item.avatar} />}
           title={<a href={props.link+`/`+`${item.id}`}>{item.name}</a>}
-          title={<a href={props.link+`/`+`${item.serializador}`}>{item.serializador}</a>}
+          // title={<a href={props.link+`/`+`${item.serializador}`}>{item.serializador}</a>}
           // title={<a href={props.link+`/`+`${item.id}`}>{item.departmentname}</a>}
-          description={item.description}
+          description={'Pertence a la categoria'+item.category}
         />
-        {item.content}
+        precio: {item.price}
       </List.Item>
     )}
   />

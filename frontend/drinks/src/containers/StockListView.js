@@ -1,5 +1,5 @@
 import React from 'react';
-import Productos from '../components/Productos';
+import Stock from '../components/Stock';
 import axios from 'axios';
 import FormStock from '../components/FormStock';
 
@@ -35,7 +35,7 @@ class StockList extends React.Component {
     render(){
         return(
     <div>
-    <Productos data={this.state.stock} link="stock"/>
+    <Stock data={this.state.stock} link="stock"/>
     <br></br>
     <h2>Agregar Stock de producto</h2>
     <FormStock

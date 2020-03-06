@@ -104,23 +104,25 @@ class FormCarrito extends React.Component {
         
                     let y = {
                         'buy': buy,
-                        'sell': sell,
+                        'sold': sell,
                         'serializador':serializador
                     }
-                    axios.put(`http://127.0.0.1:8000/api/delivery/${serializador}`, y)
+                    axios.put(`http://127.0.0.1:8000/api/stock/${serializador}/`, y)
                         .then(res => console.log(res))
                         .catch(error => console.error(error));
                 })
         
         
                 if (this.state.delivery) {
-                    let q = document.getElementById('direccion')
         
+                    let q = document.getElementById('direccion').value
+                    console.log(q)
                     let m = {
                         'direction': q,
                         'employee': employee,
                         'idFactura': this.state.idFactura
                     }
+                    console.log(q,employee,this.state.idFactura)
                     axios.post('http://127.0.0.1:8000/api/delivery/', m)
                         .then(res => console.log(res))
                         .catch(error => console.error(error));
@@ -150,7 +152,50 @@ class FormCarrito extends React.Component {
 
         
 
-       
+        // cantidad1.map(item =>{
+        //     var buy = valorib[item] - this.state.compra[item]
+        //     var sell =  valorib[item] + this.state.compra[item]
+        //     var serializador = this.state.xs[item]
+
+        //     let y = {
+        //         'buy': buy,
+        //         'sell': sell,
+        //         'serializador':serializador
+        //     }
+        //     axios.put(`http://127.0.0.1:8000/api/stock/${serializador}`, y)
+        //         .then(res => console.log(res))
+        //         .catch(error => console.error(error));
+        // })
+
+
+        // if (this.state.delivery) {
+        //     let q = document.getElementById('direccion')
+
+        //     let m = {
+        //         'direction': q,
+        //         'employee': employee,
+        //         'idFactura': this.state.idFactura
+        //     }
+        //     axios.post('http://127.0.0.1:8000/api/delivery/', m)
+        //         .then(res => console.log(res))
+        //         .catch(error => console.error(error));
+        // }
+
+
+        // this.state.pagos.map(item => {
+        //     var monto = this.state.pagos2[item]
+        //     var inst = this.state.instrumentos[item]
+        //     var fact = this.state.idFactura
+
+        //     let i = {
+        //         'factura': fact,
+        //         'Instrumentos': inst,
+        //         'Monto': monto
+        //     }
+        //     axios.post('http://127.0.0.1:8000/api/recibos/', i)
+        //         .then(res => console.log(res))
+        //         .catch(error => console.error(error));
+        // })
 
 
     }

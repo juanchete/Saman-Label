@@ -9,10 +9,8 @@ const IconText = ({ type, text }) => (
   </span>
 );
 
-const Tarjetas = (props) =>{
+const Productos = (props) =>{
   console.log(props.link)
-  const {data}= props
-  console.log(data)
     return(
         <List
     itemLayout="vertical"
@@ -46,17 +44,15 @@ const Tarjetas = (props) =>{
           />
         }
       >
-        <List.Item.Meta
+        <List.Item.Meta 
           avatar={<Avatar src={item.avatar} />}
-          title={<a href={props.link+`/`+`${item.id}`}>Nro de tajerta: {item.noTarjeta}</a>}
+          title={<a href={props.link+`/`+`${item.id}`}>{item.name}</a>}
           // title={<a href={props.link+`/`+`${item.serializador}`}>{item.serializador}</a>}
           // title={<a href={props.link+`/`+`${item.id}`}>{item.departmentname}</a>}
-          description={"Banco: "+item.banco}
         />
-        {item.content}
       </List.Item>
     )}
   />
     )
 }
-export default Tarjetas;
+export default Productos;

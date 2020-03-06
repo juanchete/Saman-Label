@@ -12,7 +12,7 @@ class TarjetaDetail extends React.Component {
 
     componentDidMount() {
         const tarjetasID = this.props.match.params.tarjetasID;
-        console.log(tarjetasID)
+    
         axios.get(`http://127.0.0.1:8000/api/tarjetas/${tarjetasID}/`)
             .then(res => {
                 this.setState({
@@ -24,6 +24,7 @@ class TarjetaDetail extends React.Component {
                 this.setState({
                     tarjeta1: res.data
                 });
+                
             })
 
     }
@@ -34,6 +35,7 @@ class TarjetaDetail extends React.Component {
                 <Card title={this.state.tarjeta.noTarjeta}>
                     <p>BANCO: {this.state.tarjeta.banco}</p>
                     <p>CEDULA: {this.state.tarjeta.cedula}</p>
+                    <p>CVV: {this.state.tarjeta.cvv}</p>
                     <p>VENCIMIENTO: {this.state.tarjeta.vencimiento}</p>
                 </Card>
                 <FormTarjetas

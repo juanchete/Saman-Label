@@ -20,13 +20,28 @@ class FormQueries extends React.Component{
     const {DataqueryJuan}=this.props
         return(
             <div>
+                <h3>Query 1</h3>
             <a href="http://127.0.0.1:8000/query/chill">Query1</a>
+            <p>Cuenta la cantidad de productos que hay en cada categoria</p>
+            <h3>Query 2</h3>
             <a href="http://127.0.0.1:8000/query/recomendaciones">Query2</a>
-            <a href="http://127.0.0.1:8000/query/productos-top">Query4</a>
-            <a href="http://127.0.0.1:8000/query/productos-vendidos">Query5</a>
-            <a href="http://127.0.0.1:8000/query/empleado-mes">Query6</a>
-            <a href="http://127.0.0.1:8000/query/empleado-mejores-pagados">Query7</a>
-            <a href="http://127.0.0.1:8000/query/empleado-juan">Query8</a>
+            <p>Muestra los productos que estan en descuento</p>
+            <h3>Query 3</h3>
+            <a href="http://127.0.0.1:8000/query/productos-top">Query3</a>
+            <p>Muestra los cinco productos mas vendidos</p>
+            <h3>Query 4</h3>
+            <a href="http://127.0.0.1:8000/query/productos-vendidos">Query4</a>
+            <p>Muestra cuanto se ha vendido de cada producto</p>
+            <h3>Query 5</h3>
+            <a href="http://127.0.0.1:8000/query/empleado-mes">Query5</a>
+            <p>Muestra los empleados con mas ventas
+            </p>
+            <h3>Query 6</h3>
+            <a href="http://127.0.0.1:8000/query/empleado-mejores-pagados">Query6</a>
+            <p>Los 5 empleados mejores pagados</p>
+            <h3>Query 7</h3>
+            <a href="http://127.0.0.1:8000/query/empleado-juan">Query7</a>
+            <p>Muestra todos los empleados que los que empiecen con juan</p>
             </div>
             // Object.values(DataqueryProductosTop)
             // Object.values(dataQuery)

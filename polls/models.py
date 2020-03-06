@@ -83,7 +83,7 @@ class ListaDescuentoP(models.Model):
 class Factura (models.Model):
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
     employee = models.ForeignKey(NominaDetallada, on_delete=models.CASCADE)
-    price = models.IntegerField()
+    price = models.FloatField()
     serialDescuento = models.ForeignKey(
     Descuento, on_delete=models.CASCADE, default='')
     day = models.DateTimeField(auto_now=True)
@@ -104,8 +104,8 @@ class Delivery (models.Model):
 class FacturaDetallada (models.Model):
     factura = models.ForeignKey(Factura, on_delete=models.CASCADE)
     serial = models.ForeignKey(Prod_Lista, on_delete=models.CASCADE)
-    precioI = models.IntegerField()
-    precioF =  models.IntegerField()
+    precioI = models.FloatField()
+    precioF =  models.FloatField()
     cantidad = models.IntegerField()
 
 
@@ -120,7 +120,7 @@ class Recibo (models.Model):
         ('EFECTIVO', ('efectivo')))
     Instrumentos = models.CharField(max_length = 9, choices = Instrumento)   
     
-    Monto = models.IntegerField()
+    Monto = models.FloatField()
 
 
 class Tarjetas (models.Model):

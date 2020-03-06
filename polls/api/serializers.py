@@ -39,7 +39,7 @@ class DeliverySerializer(serializers.ModelSerializer):
 class FacturaSerializer(serializers.ModelSerializer):
     class Meta:
         model= Factura
-        fields = ['cliente','employee','price','serialDescuento','day']
+        fields = ['id','cliente','employee','price','serialDescuento','day']
 
 class FacturaDetalladaSerializer(serializers.ModelSerializer):
     class Meta:

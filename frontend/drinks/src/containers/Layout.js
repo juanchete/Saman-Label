@@ -23,6 +23,7 @@ const CustomLayout = (props)=>{
               <Menu.Item><Link to="/nominaDetallada">Empleados</Link></Menu.Item>
               <Menu.Item><Link to="/descuento">Descuentos</Link></Menu.Item>
               <Menu.Item><Link to="/listaDescuento">Descuentos Part</Link></Menu.Item>
+              <Menu.Item><Link to="/queries">queries</Link></Menu.Item>
             </Menu>
           </Header>
           <Content style={{ padding: '0 50px' }}>
